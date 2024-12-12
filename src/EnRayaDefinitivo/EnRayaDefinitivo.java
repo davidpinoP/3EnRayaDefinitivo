@@ -86,29 +86,21 @@ public class EnRayaDefinitivo {
 			        
 		            
 		           
-		            if (hayGanador == true){
-		            	
+		            if (hayGanador){		            	
 		            	System.out.println("Ha ganado el jugador: " + jugadorRandom +" " + jugadores[jugadorRandom]);
-		            } 
-		            
-					// Cambiar al siguiente jugador
-		            jugadorRandom = (jugadorRandom + 1) % 2;
-		          
+	            
 		           
-		            
-		            for (int i = 0; i < fichas.length; i++) { //bucle para comprobar si el tablero esta lleno 
-		            	//o si algun jugador ha ganado
-						for (int j = 0; j < fichas[i].length; j++) {
-							if (fichas[i][j] != '-' || hayGanador == true){ 
-								 System.out.println(jugadores[jugadorRandom] +", " + "Quieres revancha? (si/no)");		           
+							if (hayGanador == true){
+								 System.out.println(jugadores[0] +", " + "Quieres revancha? (si/no)");		           
 						            revanchaJ1 = f.next();
 						            jugadorRandom = (jugadorRandom + 1) % 2;
-						            System.out.println(jugadores[jugadorRandom] +", " + "Quieres revancha? (si/no");
-						            revanchaJ2 = f.next();
-							}							
-						}
-						}
-		            
+						            System.out.println(jugadores[1] +", " + "Quieres revancha? (si/no");
+						            revanchaJ2 = f.next();					
+								}
+		            } else {
+		            // Cambiar al siguiente jugador
+		            jugadorRandom = (jugadorRandom + 1) % 2;
+		            }
 		        }
 				}while (revanchaJ1.contentEquals("si") && revanchaJ2.contentEquals("si"));
 				
