@@ -21,6 +21,8 @@ public class EnRayaDefinitivo {
 					System.out.println("Jugador " + i + ", introduce tu nombre: ");//pregunta los nombres
 					jugadores[i] = f.nextLine();//guarda los nombres en la variable de jugadores
 				}
+			
+				do{	
 				
 				System.out.println("Lanzemos la moneda..."); //mensaje para empezar
 				//mensaje para ver que jugador empieza de manera aleatoria
@@ -33,8 +35,8 @@ public class EnRayaDefinitivo {
 					}
 					System.out.println();
 				}
-				do{
-					
+				
+				 boolean hayGanador = false; // Para comprobar si alguien gana	
 			    for (int turnos = 0; turnos < 9; turnos++) { // Máximo 9 turnos para llenar el tablero
 		            System.out.println(jugadores[jugadorRandom] + ", " + "Introduce la fila en la que quieres poner la ficha: "); //mensaje para la fila
 		            int fila = f.nextInt() - 1;  //guarda la fila en la variable fila
@@ -62,18 +64,19 @@ public class EnRayaDefinitivo {
 		            // Cambiar al siguiente jugador
 		            jugadorRandom = (jugadorRandom + 1) % 2;
 		           
-		            /*
-		            if (fichas[][] != '-') { //creamos un if por si es empate
-		            	System.out.println("Empate");
-		            	break;
-		            }
-		            */
-		            System.out.println(jugadores[jugadorRandom] +", " + "Quieres revancha? (si/no)");
-		            revanchaJ1 = f.next();
-		            jugadorRandom = (jugadorRandom + 1) % 2;
-		            System.out.println(jugadores[jugadorRandom] +", " + "Quieres revancha? (si/no");
-		            revanchaJ2 = f.next();
 		            
+		            for (int i = 0; i < fichas.length; i++) { //bucle para comprobar si el tablero esta lleno 
+		            	//o si algun jugador ha ganado
+						for (int j = 0; j < fichas[i].length; j++) {
+							if (fichas[i][j] != '-' || ){ 
+								 System.out.println(jugadores[jugadorRandom] +", " + "Quieres revancha? (si/no)");		           
+						            revanchaJ1 = f.next();
+						            jugadorRandom = (jugadorRandom + 1) % 2;
+						            System.out.println(jugadores[jugadorRandom] +", " + "Quieres revancha? (si/no");
+						            revanchaJ2 = f.next();
+							}							
+						}
+						} 
 		        }
 				}while (revanchaJ1.contentEquals("si") && revanchaJ2.contentEquals("si"));
 				
