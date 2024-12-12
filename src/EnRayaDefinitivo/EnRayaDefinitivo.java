@@ -36,7 +36,7 @@ public class EnRayaDefinitivo {
 					System.out.println();
 				}
 				
-				 boolean hayGanador = false; // Para comprobar si alguien gana	
+				     boolean hayGanador = false; // Creamos boolean para comprobar si alguien gana iniciado en falso
 			    for (int turnos = 0; turnos < 9; turnos++) { // Máximo 9 turnos para llenar el tablero
 		            System.out.println(jugadores[jugadorRandom] + ", " + "Introduce la fila en la que quieres poner la ficha: "); //mensaje para la fila
 		            int fila = f.nextInt() - 1;  //guarda la fila en la variable fila
@@ -60,15 +60,46 @@ public class EnRayaDefinitivo {
 		                }
 		                System.out.println();
 		            }
+		            
+		       
+		            //creammos un bucle para revisar las filas para ver si hay ganador o no
+		              for (int i = 0; i < 3; i++) {
+			            if (fichas[i][0] != '-' && fichas[i][0] == fichas[i][1] && fichas[i][1] == fichas[i][2]) {
+			                hayGanador = true;
+			            }
+			        }
 
-		            // Cambiar al siguiente jugador
+		            //creammos un bucle para revisar las columnas para ver si hay ganador o no
+			        for (int i = 0; i < 3; i++) {
+			            if (fichas[0][i] != '-' && fichas[0][i] == fichas[1][i] && fichas[1][i] == fichas[2][i]) {
+			                hayGanador = true;
+			            }
+			        }
+
+			        // Creamos un if para revisar las diagonales
+			        if (fichas[0][0] != '-' && fichas[0][0] == fichas[1][1] && fichas[1][1] == fichas[2][2]) {
+			            hayGanador = true;
+			        }
+			        if (fichas[0][2] != '-' && fichas[0][2] == fichas[1][1] && fichas[1][1] == fichas[2][0]) {
+			            hayGanador = true;
+			        }
+			        
+		            
+		           
+		            if (hayGanador == true){
+		            	
+		            	System.out.println("Ha ganado el jugador: " + jugadorRandom +" " + jugadores[jugadorRandom]);
+		            } 
+		            
+					// Cambiar al siguiente jugador
 		            jugadorRandom = (jugadorRandom + 1) % 2;
+		          
 		           
 		            
 		            for (int i = 0; i < fichas.length; i++) { //bucle para comprobar si el tablero esta lleno 
 		            	//o si algun jugador ha ganado
 						for (int j = 0; j < fichas[i].length; j++) {
-							if (fichas[i][j] != '-' || ){ 
+							if (fichas[i][j] != '-' || hayGanador == true){ 
 								 System.out.println(jugadores[jugadorRandom] +", " + "Quieres revancha? (si/no)");		           
 						            revanchaJ1 = f.next();
 						            jugadorRandom = (jugadorRandom + 1) % 2;
@@ -76,41 +107,15 @@ public class EnRayaDefinitivo {
 						            revanchaJ2 = f.next();
 							}							
 						}
-						} 
+						}
+		            
 		        }
 				}while (revanchaJ1.contentEquals("si") && revanchaJ2.contentEquals("si"));
 				
-				if (revanchaJ1.contentEquals("no") && revanchaJ2.contentEquals("no")){
+				if (!revanchaJ1.contentEquals("si") || !revanchaJ2.contentEquals("si")){
 		        System.out.println("¡Juego terminado!"); //mensaje de juego terminado
 				}
-				
-				/*
-				for (int i = 0; i < fichas.length; i++) {
-					System.out.println("Introduce la fila en la que quieres poner tu ficha: ");
-					int fila = f.nextInt() -1;
-					System.out.println("Introduce la columna en la que quieres poner tu ficha: ");
-					int columna = f.nextInt() -1;
-					fichaColocada[fila][columna] = 'x';	  
-					
-				//	fichas[fila][columna] = (jugadorRandom == 0) ? 'x' : 'o';	
-					
-				}
-				 
-				for (int i = 0; i < fichas.length; i++) {
-		            for (int j = 0; j < fichas[i].length; j++) {
-		                System.out.print(fichas[i][j] + " ");
-		            }
-		            System.out.println();
-		        }
-				jugadorRandom = (jugadorRandom + 1) % 2;
-		    
-
-		    System.out.println("¡Juego terminado!");
-			*/
-				
-			
-
-		
+									
 	}
 
 }
