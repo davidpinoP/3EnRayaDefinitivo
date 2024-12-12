@@ -64,6 +64,7 @@ public class EnRayaDefinitivo {
 		       
 		            //creammos un bucle para revisar las filas para ver si hay ganador o no
 		              for (int i = 0; i < 3; i++) {
+		            	  //mira que los huecos no esten vacios y mira hueco por hueco de cada fila comparando los caracteres
 			            if (fichas[i][0] != '-' && fichas[i][0] == fichas[i][1] && fichas[i][1] == fichas[i][2]) {
 			                hayGanador = true;
 			            }
@@ -71,12 +72,14 @@ public class EnRayaDefinitivo {
 
 		            //creammos un bucle para revisar las columnas para ver si hay ganador o no
 			        for (int i = 0; i < 3; i++) {
+			        	 //mira que los huecos no esten vacios y mira hueco por hueco de cada columna comparando los caracteres
 			            if (fichas[0][i] != '-' && fichas[0][i] == fichas[1][i] && fichas[1][i] == fichas[2][i]) {
 			                hayGanador = true;
 			            }
 			        }
 
 			        // Creamos un if para revisar las diagonales
+			        //mira que los huecos no esten vacios y mira hueco por hueco de manera diagonal
 			        if (fichas[0][0] != '-' && fichas[0][0] == fichas[1][1] && fichas[1][1] == fichas[2][2]) {
 			            hayGanador = true;
 			        }
@@ -85,25 +88,26 @@ public class EnRayaDefinitivo {
 			        }
 			        
 		            
-		           
+		           //if para mostrar el mensaje si hay ganador y pedir la revancha
 		            if (hayGanador){		            	
 		            	System.out.println("Ha ganado el jugador: " + jugadorRandom +" " + jugadores[jugadorRandom]);
 	            
-		           
-							if (hayGanador == true){
+		            	// pide la revancha a los dos jugadores						
 								 System.out.println(jugadores[0] +", " + "Quieres revancha? (si/no)");		           
-						            revanchaJ1 = f.next();
+						            revanchaJ1 = f.next(); //guarda la respuesta en la variable
 						            jugadorRandom = (jugadorRandom + 1) % 2;
 						            System.out.println(jugadores[1] +", " + "Quieres revancha? (si/no");
-						            revanchaJ2 = f.next();					
-								}
+						            revanchaJ2 = f.next();	//guarda la respuesta en la variable				
+								
 		            } else {
 		            // Cambiar al siguiente jugador
-		            jugadorRandom = (jugadorRandom + 1) % 2;
+		            jugadorRandom = (jugadorRandom + 1) % 2; //si no ha ganado ningun jugador aun pues se cambia
+		            //de jugador para seguir jugando
 		            }
 		        }
+			    //el bucle sigue mientras que los dos jugadores quieran revancha
 				}while (revanchaJ1.contentEquals("si") && revanchaJ2.contentEquals("si"));
-				
+				//si alguno de los dos jugadores no quiere revancha se acaba el juego
 				if (!revanchaJ1.contentEquals("si") || !revanchaJ2.contentEquals("si")){
 		        System.out.println("¡Juego terminado!"); //mensaje de juego terminado
 				}
